@@ -4,6 +4,7 @@ import jinja2
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 import json
+from datetime import datetime
 from model import grocery
 
 jinjaEnv = jinja2.Environment(
@@ -28,7 +29,7 @@ class newList(webapp2.RequestHandler):
     def post(self):
         nameOfFood = self.request.get('food-name')
         dateOfExpiration = self.request.get('expirationDate')
-        saveToDB = grocery(food = nameOfFood, expirationDate = dateOfExpiration)
+        saveToDB = grocery(food = nameOfFood, expirationDate = (datetime.strptime(dateOfExpiration, '%Y-%m-%d')))
         saveToDB.put()
 
 app = webapp2.WSGIApplication([
