@@ -5,6 +5,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 import json
 from model import grocery
+from datetime import datetime
 
 jinjaEnv = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -19,14 +20,21 @@ class homePage(webapp2.RequestHandler):
 class loadList(webapp2.RequestHandler):
     def get(self):
         loadListPage = jinjaEnv.get_template('templates/loadlist.html')
-        self.response.write(loadListPage.render())
+        past_lists = grocery.query().fetch()
+        var_dict = {
+        "list" : past_lists
+        }
+        self.response.write(loadListPage.render(var_dict))
 
 class newList(webapp2.RequestHandler):
     def get(self):
         newList = jinjaEnv.get_template('templates/newlist.html')
         self.response.write(newList.render())
     def post(self):
-        nameOfFood = self.request.get('food')
+        nameOfFood = self.request.get('food-name')
+        dateOfExpiration = self.request.get('expirationDate')
+        saveToDB = grocery(food = nameOfFood, expirationDate = (datetime.strptime(dateOfExpiration, '%Y-%m-%d')))
+        saveToDB.put()
 
 app = webapp2.WSGIApplication([
     ('/', homePage),
