@@ -26,7 +26,10 @@ class newList(webapp2.RequestHandler):
         newList = jinjaEnv.get_template('templates/newlist.html')
         self.response.write(newList.render())
     def post(self):
-        nameOfFood = self.request.get('food')
+        nameOfFood = self.request.get('food-name')
+        dateOfExpiration = self.request.get('expirationDate')
+        saveToDB = grocery(food = nameOfFood, expirationDate = dateOfExpiration)
+        saveToDB.put()
 
 app = webapp2.WSGIApplication([
     ('/', homePage),
