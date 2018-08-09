@@ -4,6 +4,7 @@ import jinja2
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 import json
+import model
 from datetime import datetime
 from model import grocery
 from datetime import datetime
@@ -23,9 +24,11 @@ class loadList(webapp2.RequestHandler):
         loadListPage = jinjaEnv.get_template('templates/loadlist.html')
         past_lists = grocery.query().fetch()
         var_dict = {
-        "list" : past_lists
+        "list" : past_lists[0].food
         }
+        #for food in past_lists[grocery]:
         self.response.write(loadListPage.render(var_dict))
+        # self.response.write(loadListPage.render(var_dict))
 
 class newList(webapp2.RequestHandler):
     def get(self):
