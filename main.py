@@ -21,12 +21,7 @@ class homePage(webapp2.RequestHandler):
 class loadList(webapp2.RequestHandler):
     def get(self):
         loadListPage = jinjaEnv.get_template('templates/loadlist.html')
-        past_lists = grocery.query().fetch()
-        var_dict = {
-        "list" : past_lists
-        }
-        self.response.write(loadListPage.render(var_dict))
-
+        
 class newList(webapp2.RequestHandler):
     def get(self):
         newList = jinjaEnv.get_template('templates/newlist.html')
