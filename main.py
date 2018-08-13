@@ -24,7 +24,7 @@ class loadList(webapp2.RequestHandler):
         loadListPage = jinjaEnv.get_template('templates/loadlist.html')
         past_lists = grocery.query().fetch()
         var_dict = {
-        "list" : past_lists[0].food
+        "list" : past_lists[0].title
         }
         #for food in past_lists[grocery]:
         self.response.write(loadListPage.render(var_dict))
@@ -37,8 +37,11 @@ class newList(webapp2.RequestHandler):
     def post(self):
         nameOfFood = self.request.get('food-name')
         dateOfExpiration = self.request.get('expirationDate')
-        saveToDB = grocery(food = nameOfFood, expirationDate = (datetime.strptime(dateOfExpiration, '%Y-%m-%d')))
+        titleOfList = self.request.get('title')
+        saveToDB = grocery(food = nameOfFood,
+        expirationDate = (datetime.strptime(dateOfExpiration, '%Y-%m-%d')), title = titleOfList)
         saveToDB.put()
+        #self.redirect('/newlist')
 
 app = webapp2.WSGIApplication([
     ('/', homePage),
