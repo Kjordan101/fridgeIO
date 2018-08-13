@@ -6,8 +6,13 @@
   </head>
   <!-- testing pulling food from table -->
   <body>
-    {% for list in debug %}
-    <h2>{{list.food}}{{list.expirationDate}}</h2>
+    {% for grocery_list in debug %}
+    <h2>{{grocery_list.title}}</h2>
+      {% for each_food in grocery_list.foods%}
+        {%set food_info = each_food.get()%}
+        <p>{{food_info.food}}</p>
+        <p>{{food_info.expirationDate}}</p>
+      {% endfor %}
     {% endfor %}
   </body>
 </html>

@@ -21,16 +21,11 @@ class homePage(webapp2.RequestHandler):
 
 class loadList(webapp2.RequestHandler):
     def get(self):
-        # loadListPage = jinjaEnv.get_template('templates/loadlist.html')
         #testing fetch to database with mutipule tables
-        loadListPage = jinjaEnv.get_template('templates/debug.html')
+        loadListPage = jinjaEnv.get_template('templates/loadlist.html')
         past_lists = Grocery.query().fetch()
-        current_items = Food.query().fetch()
-        dict = {
-        "debug": past_lists
-        }
-        self.response.write(loadListPage.render({"debug":current_items}))
-        # self.response.write(loadListPage.render({'lists' : past_lists}))
+
+        self.response.write(loadListPage.render({"debug":past_lists}))
 class newList(webapp2.RequestHandler):
     def get(self):
         newList = jinjaEnv.get_template('templates/newlist.html')
@@ -40,13 +35,14 @@ class newList(webapp2.RequestHandler):
         dateOfExpiration = self.request.get('expirationDate',allow_multiple=True)
         pickYourTitle = self.request.get('title')
 
+        #fill list with key values
         listOfFoods = []
         for i in range(len(nameOfFood)):
             food = Food(food = nameOfFood[i], expirationDate = datetime.strptime(dateOfExpiration[i],'%Y-%m-%d'))
             foodKey = food.put()
             listOfFoods.append(foodKey)
 
-        # saveToDB = grocery(title = pickYourTitle, food = nameOfFood, expirationDate = (datetime.strptime(dateOfExpiration, '%Y-%m-%d')))
+        #save to grocery list to database
         groceryToSave = Grocery(title = pickYourTitle, foods = listOfFoods)
         groceryToSave.put()
         self.redirect('/loadlist')

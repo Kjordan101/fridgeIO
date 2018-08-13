@@ -9,8 +9,13 @@
 
 <!--<h1> {{lists}} <h1>-->
 <h1>Past Lists</h1>
-  {% for each_list in lists %}
-    <h2>{{each_list.title}} {{each_list.food}} {{each_list.expirationDate}}</h2>
-    {% endfor %}
+{% for grocery_list in debug %}
+<h2>{{grocery_list.title}}</h2>
+  {% for each_food in grocery_list.foods%}
+    {%set food_info = each_food.get()%}
+    <p>{{food_info.food}}</p>
+    <p>{{food_info.expirationDate}}</p>
+  {% endfor %}
+{% endfor %}
   </body>
 </html>
