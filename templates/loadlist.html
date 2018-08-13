@@ -5,6 +5,12 @@
     <title></title>
   </head>
   <body>
-<h1>{{list}}</h1>
+    <!--This is a comment. Comments are not displayed in the browser-->
+
+<!--<h1> {{lists}} <h1>-->
+<h1>Past Lists</h1>
+  {% for each_list in lists %}
+    <h2>{{each_list.title}} {{each_list.food}} {{each_list.expirationDate}}</h2>
+    {% endfor %}
   </body>
 </html>
