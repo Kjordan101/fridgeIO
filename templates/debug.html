@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <!-- testing pulling food from table -->
+  <body>
+    {% for list in debug %}
+    <h2>{{list.food}}{{list.expirationDate}}</h2>
+    {% endfor %}
+  </body>
+</html>
