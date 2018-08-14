@@ -4,10 +4,8 @@ import jinja2
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 import json
-# import model
 from datetime import datetime
 from model import Grocery, Food
-# from datetime import datetime
 
 jinjaEnv = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -46,9 +44,16 @@ class newList(webapp2.RequestHandler):
         groceryToSave = Grocery(title = pickYourTitle, foods = listOfFoods)
         groceryToSave.put()
         self.redirect('/loadlist')
+class updateHandler(webapp2.RequestHandler):
+    def get(self):
+        previousPage = jinjaEnv.get_template('templates/loadlist.html')
+        updatePage = jinjaEnv.get_template('templates/updatepage.html')
+        edit_list = Grocery.query().fetch()
+        self.response.write(updatePage.render({"edit_list":edit_list}))
 
 app = webapp2.WSGIApplication([
     ('/', homePage),
     ('/loadlist', loadList),
-    ('/newlist', newList)
+    ('/newlist', newList),
+    ('/update',updateHandler)
 ], debug=True)

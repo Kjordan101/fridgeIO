@@ -9,13 +9,15 @@
 
 <!--<h1> {{lists}} <h1>-->
 <h1>Past Lists</h1>
+<form action="updatepage.html" method="post">
 {% for grocery_list in debug %}
-<button type = "button">{{grocery_list.title}}</button>
+<input name = "button" type = "submit" value = "{{grocery_list.title}}"></input>
   {% for each_food in grocery_list.foods%}
     {%set food_info = each_food.get()%}
     <p>{{food_info.food}}</p>
     <p>{{food_info.expirationDate}}</p>
   {% endfor %}
 {% endfor %}
+</form>
   </body>
 </html>
