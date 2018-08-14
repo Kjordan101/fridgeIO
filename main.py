@@ -22,7 +22,7 @@ class loadList(webapp2.RequestHandler):
         #testing fetch to database with mutipule tables
         loadListPage = jinjaEnv.get_template('templates/loadlist.html')
         past_lists = Grocery.query().fetch()
-        
+
 
         self.response.write(loadListPage.render({"debug":past_lists}))
 class newList(webapp2.RequestHandler):
@@ -53,7 +53,7 @@ class updateHandler(webapp2.RequestHandler):
         self.response.write(updatePage.render({"edit_list":edit_list}))
 
 app = webapp2.WSGIApplication([
-    ('/', homePage),
+    ('/', newList),
     ('/loadlist', loadList),
     ('/newlist', newList),
     ('/update',updateHandler)
