@@ -3,15 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+
   </head>
   <body>
-    <!--This is a comment. Comments are not displayed in the browser-->
 
-<!--<h1> {{lists}} <h1>-->
 <h1>Past Lists</h1>
-<form action="updatepage.html" method="post">
 {% for grocery_list in debug %}
-<input name = "button" type = "submit" value = "{{grocery_list.title}}"></input>
+  <h1 id={{grocery_list.id}}>{{grocery_list.title}}</h1>
   {% for each_food in grocery_list.foods%}
     {%set food_info = each_food.get()%}
     <p>{{food_info.food}}</p>
