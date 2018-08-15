@@ -88,16 +88,13 @@ class newList(webapp2.RequestHandler):
         groceryToSave = Grocery(title = pickYourTitle, foods = listOfFoods)
         groceryToSave.put()
         self.redirect('/loadlist')
-class updateHandler(webapp2.RequestHandler):
+class aboutPage(webapp2.RequestHandler):
     def get(self):
-        previousPage = jinjaEnv.get_template('templates/loadlist.html')
-        updatePage = jinjaEnv.get_template('templates/updatepage.html')
-        edit_list = Grocery.query().fetch()
-        self.response.write(updatePage.render({"edit_list":edit_list}))
-
+        about_page = jinjaEnv.get_template('templates/about.html')
+        self.response.write(about_page.render())
 app = webapp2.WSGIApplication([
-    ('/', newList),
+    ('/', homePage),
     ('/loadlist', loadList),
     ('/newlist', newList),
-    ('/update',updateHandler)
+    ('/about',aboutPage)
 ], debug=True)

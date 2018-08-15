@@ -14,6 +14,12 @@ body{
 #all-h3{
   color: white;
 }
+.list-of-foods{
+  color: white;
+}
+#title-of-foods{
+  color: white;
+}
 /* global */
 .container{
   width:80%;
@@ -39,9 +45,8 @@ ul{
   border: none;
 }
 
-
   .boxed_1 {
-    width:300px;
+    width:auto;
     height:300px;
     margin:auto;
     overflow:hidden;

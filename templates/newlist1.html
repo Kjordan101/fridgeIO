@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+    // function fun(){
+    //   document.write("<input type='text' name='text'>");
+    //
+    // }
+    function fun(){
+      let listOfFoods = document.getElementById("list-of-foods");
+      var innerDiv = document.createElement('div');
+      innerDiv.className = "test";
+      innerDiv.innerHTML = '<input type="input" name="food-name" placeholder="Enter the food name"><input type="date" name="expirationDate">';
+      // var button = document.createElement('div');
+      // button.innerHTML = 'hello';
+      listOfFoods.appendChild(innerDiv);
+      console.log('sss')
+
+    }
+    </script>
+  </head>
+  <body>
+    <h1>New List Test</h1>
+    <form class="food" method="post">
+      <input type = "input" name = "title" placeholder="Enter List Title Here">
+      <br></br>
+        <div id="list-of-foods">
+          <div id = "the-inputs">
+            <input type="input" name="food-name" placeholder="Enter the food name">
+            <input type="date" name="expirationDate">
+          </div>
+      </div>
+      <input type="submit" name="saveToDB" value="Save">
+      <button type='button' onclick='fun()'> Add Item </button>
+
+    </form>
+
+  </body>
+</html>

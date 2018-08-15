@@ -2,20 +2,36 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/loadliststyles.css">
     <title></title>
-
   </head>
   <body>
+    <header>
+        <div class="container">
+          <div id="branding">
+            <!-- <h1> <span class="fridge">Fridge</h1>
+              <h1 class="io">.io</h1> -->
+            <img src="/images/logo.jpg" alt="logo">
 
+            <nav>
+              <ul>
+                <li class="current"><a class="current" href="/">Home</a></li>
+                <li class="current"><a class="current" href="/about">About</a></li>
+              </ul>
+            </nav>
+          </div>
+      </header>
+<!--<h1> {{lists}} <h1>-->
 <h1>Past Lists</h1>
+<div class = "foodBox">
 {% for grocery_list in debug %}
-  <h1 id={{grocery_list.id}}>{{grocery_list.title}}</h1>
+<h1 id = "title-of-foods">{{grocery_list.title}}</h1>
   {% for each_food in grocery_list.foods%}
     {%set food_info = each_food.get()%}
-    <p>{{food_info.food}}</p>
-    <p>{{food_info.expirationDate}}</p>
+    <p class = "list-of-foods">{{food_info.food}}</p>
+    <p class = "list-of-foods">{{food_info.expirationDate}}</p>
   {% endfor %}
 {% endfor %}
-</form>
+</div>
   </body>
 </html>

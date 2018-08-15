@@ -2,12 +2,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title></title>
-    <script>
-    // function fun(){
-    //   document.write("<input type='text' name='text'>");
-    //
-    // }
+    <link rel="stylesheet" href="/styles/styles.css">
+    <script type="text/javascript">
     function fun(){
       let listOfFoods = document.getElementById("list-of-foods");
       var innerDiv = document.createElement('div');
@@ -16,26 +14,58 @@
       // var button = document.createElement('div');
       // button.innerHTML = 'hello';
       listOfFoods.appendChild(innerDiv);
-      console.log('sss')
 
     }
     </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
   <body>
-    <h1>New List Test</h1>
-    <form class="food" method="post">
-      <input type = "input" name = "title" placeholder="Enter List Title Here">
-      <br></br>
-        <div id="list-of-foods">
-          <div id = "the-inputs">
-            <input type="input" name="food-name" placeholder="Enter the food name">
-            <input type="date" name="expirationDate">
+    <header>
+        <div class="container">
+          <div id="branding">
+            <!-- <h1> <span class="fridge">Fridge</h1>
+              <h1 class="io">.io</h1> -->
+            <img src="images/logo.jpg" alt="logo">
+            <nav>
+              <ul>
+                <li class="current"><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+              </ul>
+            </nav>
+          </div>
+      </header><form method="post">
+
+      <div class= "text-center">
+        <div id = "list-of-foods">
+           <!-- <h1 class= "fridge" id="title1">Title</h1><br><br> -->
+           <input id= "navbar" class = "input-lg"type="text" name="title" placeholder="Enter a title"><br>
+           <input id= "food"class = "input-lg"type="text" name="food-name" placeholder="Enter a food item">
+           <input id = "expdate"class = "input-lg"type="date" name="expirationDate"><br>
+           <br>
+        </div>
+      </form>
+           <div class="btn-group">
+             <form action="/newlist">
+              <input type ="submit" id ="new-list" class="btn btn-secondary btn-lg" value = "New list" aria-haspopup="true" aria-expanded="false">
+                  <!-- New List -->
+              </button>
+            </form>
+          </div>
+          <div class="btn-group">
+            <form action="/loadlist">
+              <button id= "load-list" class="btn btn-secondary btn-lg" type="submit">
+                Load List
+              </button>
+            </form>
+          </div>
+          <div class="btn-group">
+              <button id ="save-list" class="btn btn-secondary btn-lg" type="submit" name="saveToDB" value="Save" aria-haspopup="true" aria-expanded="false">
+                SAVE
+              </button>
+          </div>
+          <div class="btn-group">
+              <button id ="add-list" onclick='fun()'class="btn btn-secondary btn-lg" type="button" aria-haspopup="true" aria-expanded="false">
+                ADD
+              </button>
           </div>
       </div>
-      <input type="submit" name="saveToDB" value="Save">
-      <button type='button' onclick='fun()'> Add Item </button>
-
-    </form>
-
-  </body>
-</html>
